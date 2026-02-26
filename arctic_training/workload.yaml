@@ -1,0 +1,36 @@
+experiment_name: arctic-training-sft-llama
+environment:
+  env_variables:
+    NCCL_DEBUG: "INFO"
+    MLFLOW_TRACKING_URI: "databricks"
+  dependencies: requirements.yaml
+  env_variables_secrets:
+    HF_TOKEN: "sgc-nightly-notebook/hf_token"  # change this to your own hugging face token
+compute:
+  gpus: 8
+  gpu_type: h100
+max_retries: 0
+command: |-
+  # Install missing CUDA dev libraries for DeepSpeed JIT compilation
+  apt-get update && apt-get install -y libcurand-dev-12-6 libcusparse-dev-12-6 libcublas-dev-12-6 libcusolver-dev-12-6 cuda-cudart-dev-12-6 2>/dev/null || true
+  
+  # Pre-compile DeepSpeed FusedAdam and download model on rank 0 first
+  if [ "$LOCAL_RANK" = "0" ] || [ -z "$LOCAL_RANK" ]; then
+    echo "Rank 0: Pre-compiling DeepSpeed FusedAdam..."
+    python -c "import torch; from deepspeed.ops.adam import FusedAdam; FusedAdam([torch.nn.Parameter(torch.zeros(1, device='cuda'))], lr=0.001); print('FusedAdam compiled')"
+    echo "Rank 0: Pre-downloading model..."
+    python -c "from huggingface_hub import snapshot_download; snapshot_download('meta-llama/Llama-3.1-8B-Instruct', local_dir_use_symlinks=False); print('Model download complete')"
+  fi
+  
+  # Wait for compilation and download to complete
+  sleep 60
+  
+  # Arctic Training uses DeepSpeed internally for distributed training
+  # We pass the DeepSpeed multi-node arguments to the arctic_training CLI
+  arctic_training /Workspace/Shared/ml-misc/air-examples/sgcli/arctic_training/recipe.yaml \
+    --num_nodes=1 \
+    --num_gpus=8 \
+    --no_ssh \
+    --node_rank=$NODE_RANK \
+    --master_addr=$MASTER_ADDR \
+    --master_port=$MASTER_PORT

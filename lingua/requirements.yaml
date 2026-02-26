@@ -1,0 +1,4 @@
+version: "4"
+dependencies:
+  - xformers==0.0.31
+  - -r "/Workspace/Shared/lingua-databricks/requirements.txt"
