@@ -6,7 +6,7 @@ For detailed user documentation, see the [SGCLI User Guide](https://docs.google.
 
 For questions or support, please contact ben.hansen@databricks.com & amine.elhelou@databricks.com
 
-**Limitations: **
+**Limitations:**
 - Launching ray jobs via the `sgcli` command is not supported yet but can be done interactively via notebooks or databricks jobs see examples [here](./ray_notebook_examples/)
 
 ## Examples
