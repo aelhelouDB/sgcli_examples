@@ -4,7 +4,10 @@ This directory contains example configurations for launching training workloads 
 
 For detailed user documentation, see the [SGCLI User Guide](https://docs.google.com/document/d/1gjwD4YiR1x8L1vZ5VzDomcUeNuMG1wVVrKsmT-M_nUU/edit?usp=sharing).
 
-For questions or support, please contact ben.hansen@databricks.com.
+For questions or support, please contact ben.hansen@databricks.com & amine.elhelou@databricks.com
+
+**Limitations: **
+- Launching ray jobs via the `sgcli` command is not supported yet but can be done interactively via notebooks or databricks jobs see examples [here](./ray_notebook_examples/)
 
 ## Examples
 
@@ -84,5 +87,4 @@ command: |-
 
 ## Resources
 
-- [SGCLI User Guide](https://docs.google.com/document/d/1gjwD4YiR1x8L1vZ5VzDomcUeNuMG1wVVrKsmT-M_nUU)
-- [Serverless GPU Compute Documentation](https://docs.databricks.com/)
+- [Serverless GPU Compute Documentation]([https://docs.databricks.com/](https://docs.databricks.com/aws/en/compute/serverless/gpu))
