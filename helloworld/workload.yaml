@@ -14,4 +14,4 @@ command: |-
     --node_rank=$NODE_RANK \
     --master_addr=$MASTER_ADDR \
     --master_port=$MASTER_PORT \
-    /Workspace/Shared/ml-misc/air-examples/sgcli/helloworld/train.py
+    /Workspace/Shared/aelhelouDB/sgcli_examples/helloworld/train.py # Change this to your folder's location
