@@ -27,7 +27,7 @@ command: |-
   
   # Arctic Training uses DeepSpeed internally for distributed training
   # We pass the DeepSpeed multi-node arguments to the arctic_training CLI
-  arctic_training /Workspace/Shared/ml-misc/air-examples/sgcli/arctic_training/recipe.yaml \
+  arctic_training /Workspace/Shared/aelhelouDB/sgcli_examples/arctic_training/recipe.yaml \ # CHANGE THIS
     --num_nodes=1 \
     --num_gpus=8 \
     --no_ssh \
