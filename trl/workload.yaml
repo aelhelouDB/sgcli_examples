@@ -30,7 +30,7 @@ command: |-
     --main_process_ip $MASTER_ADDR \
     --main_process_port $MASTER_PORT \
     --mixed_precision bf16 \
-    $HOME/ml-misc/air-examples/sgcli/trl/sft.py \
+    $HOME/aelhelouDB/sgcli_examples/trl/sft.py \
     --model_name_or_path Qwen/Qwen2-0.5B \
     --dataset_name trl-lib/Capybara \
     --learning_rate 2.0e-5 \
