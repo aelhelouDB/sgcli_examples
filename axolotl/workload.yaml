@@ -17,11 +17,11 @@ code_source:
     repo_path: /Users/lin.yuan/work/ml-misc  
 
 command: |-
-  # path to the accelerate config
+  # path to the accelerate config - CHANGE THIS
   # $HOME here is in remote GPU worker, not local machine
-  ACCEL_CONFIG="$HOME/ml-misc/air-examples/sgcli/axolotl/accelerate_config.yaml"
+  ACCEL_CONFIG="$HOME/aelhelouDB/sgcli_examples/axolotl/accelerate_config.yaml"
   # path to the training config
-  TRAIN_CONFIG="$HOME/ml-misc/air-examples/sgcli/axolotl/fft-8b-liger-fsdp.yaml"
+  TRAIN_CONFIG="$HOME/aelhelouDB/sgcli_examples/axolotl/fft-8b-liger-fsdp.yaml"
 
   accelerate launch \
     --config_file "$ACCEL_CONFIG" \
